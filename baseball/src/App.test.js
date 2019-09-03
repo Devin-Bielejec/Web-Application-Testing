@@ -36,15 +36,35 @@ it('renders without crashing', () => {
   const hitCount = document.querySelector("div.counts p.hit");
   expect(hitCount).toBeInTheDocument();
 
-  //Ensure that clicking strike, increases stike count by 1 until 3 then reset to 0
+  //Ensure that clicking strike, increases strike count by 1 until 3 then resets everything to 0
   rtl.fireEvent.click(strikeButton, {button: 0});
   expect(strikeCount).toHaveTextContent(1);
   rtl.fireEvent.click(strikeButton, {button: 0});
   expect(strikeCount).toHaveTextContent(2);
   rtl.fireEvent.click(strikeButton, {button: 0});
-  expect(strikeCount).toHaveTextContent(0);
+  const isReset = () => {
+    expect(strikeCount).toHaveTextContent(0);
+    expect(ballCount).toHaveTextContent(0);
+    expect(hitCount).toHaveTextContent(0);
+    expect(foulCount).toHaveTextContent(0);
+  }
 
+  //Ensure that clicking ball, increase ball count by 1 until 4 then resets everything to 0
+  rtl.fireEvent.click(ballButton, {button: 0});
+  expect(ballCount).toHaveTextContent(1);
+  rtl.fireEvent.click(ballButton, {button: 0});
+  expect(ballCount).toHaveTextContent(2);
+  rtl.fireEvent.click(ballButton, {button: 0});
+  expect(ballCount).toHaveTextContent(3);
+  rtl.fireEvent.click(ballButton, {button: 0});
+  expect(ballCount).toHaveTextContent(0);
+  isReset();
 
+  //Ensure that clicking hit, resets everything to 0
+  rtl.fireEvent.click(hitButton);
+  isReset();
+
+  
   console.log(simulatedDOM.debug());
 
 });

@@ -36,7 +36,7 @@ function App() {
   }
 
   const ballChanges = () => {
-    if (ball === 4) {
+    if (ball === 3) {
       resetAll();
     } else {
       setBall(ball+1);
