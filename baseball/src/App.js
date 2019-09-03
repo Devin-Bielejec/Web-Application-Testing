@@ -44,7 +44,7 @@ function App() {
   }
 
 const strikeChanges = () => {
-  if (strike === 3) {
+  if (strike === 2) {
     resetAll();
   } else {
     setStrike(strike+1);
