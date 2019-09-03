@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const DisplayComponent = (props) => {
     
     return(
-        <div>
+        <div className="counts">
             <p>Ball Count: {props.ball}</p>
             <p>Strike Count: {props.strike}</p>
             <p>Foul Count: {props.foul}</p>
