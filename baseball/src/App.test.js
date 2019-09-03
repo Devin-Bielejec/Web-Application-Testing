@@ -87,6 +87,7 @@ it("Clicking Ball Button increase count by 1 until 4", () => {
   
 it("Clicking hit button resets everything to 0", () => {
   const simulatedDOM = rtl.render(<App />);
+  const hitButton = document.querySelector("div.buttons button.hit");
   rtl.fireEvent.click(hitButton);
   isReset();
 })
@@ -100,6 +101,21 @@ it("Clicking Foul Button increases by 1 everytime until at least 100", () => {
     rtl.fireEvent.click(foulButton);
     expect(foulCount).toHaveTextContent(i);
   }
+})
+
+it("When Strike Count is 0 or 1, foul button increases strike by 1", () => {
+  const simulatedDOM = rtl.render(<App />);
+
+  let strikeCount = document.querySelector("div.counts p.strike");
+  const foulButton = document.querySelector("div.buttons button.foul");
+  
+  rtl.fireEvent.click(foulButton);
+  expect(strikeCount).toHaveTextContent(1);
+  rtl.fireEvent.click(foulButton);
+  expect(strikeCount).toHaveTextContent(2);
+  rtl.fireEvent.click(foulButton);
+  expect(strikeCount).toHaveTextContent(2);
+
 })
 
 
