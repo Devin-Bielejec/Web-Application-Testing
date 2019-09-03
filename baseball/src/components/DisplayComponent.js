@@ -4,10 +4,10 @@ const DisplayComponent = (props) => {
     
     return(
         <div>
-            <p class="ballCount">Ball Count: {props.ball}</p>
-            <p class="strikeCount">Strike Count: {props.strike}</p>
-            <p class="foulCount">Foul Count: {props.foul}</p>
-            <p class="hitCount">Hit Count: {props.hit}</p>
+            <p>Ball Count: {props.ball}</p>
+            <p>Strike Count: {props.strike}</p>
+            <p>Foul Count: {props.foul}</p>
+            <p>Hit Count: {props.hit}</p>
         </div>
     )
 }

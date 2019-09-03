@@ -7,21 +7,50 @@ import DashboardComponent from "./components/DashboardComponent";
 function App() {
   const useInput = (key, initialValue) => {
     const [value, setValue] = useState(initialValue);
-    const handleChanges = () => {
-        (key === "ball" && (value+1) === 4) ? setValue(0) : setValue(value+1);
-        (key === "strike" && (value+1) === 3) ? setValue(0) : setValue(value+1);
-        
-        console.log(value);
-        setValue(value + 1);
-    };
-    return [value, setValue, handleChanges];
+    return [value, setValue];
     }
 
-    const [ball, setBall, ballChanges] = useInput("ball", 0);
-    const [strike, setStrike, strikeChanges] = useInput("strike", 0);
-    const [foul, setFoul, foulChanges] = useInput("foul",0);
-    const [hit, setHit, hitChanges] = useInput("hit", 0);
+  const [ball, setBall] = useInput("ball", 0);
+  const [strike, setStrike] = useInput("strike", 0);
+  const [hit, setHit] = useInput("hit", 0);
+  const [foul, setFoul] = useInput("foul",0);
 
+  const resetAll = () => {
+    setBall(0);
+    setStrike(0);
+    setFoul(0);
+    setHit(0);
+  }
+
+  const foulChanges = () => {
+    if (strike === 0) {
+      setStrike(1);
+    } else if (strike === 1) {
+      setStrike(2);
+    }
+    setFoul(foul+1)
+  }
+
+  const hitChanges = () => {
+    resetAll();
+  }
+
+  const ballChanges = () => {
+    if (ball === 4) {
+      resetAll();
+    } else {
+      setBall(ball+1);
+    }
+  }
+
+const strikeChanges = () => {
+  if (strike === 3) {
+    resetAll();
+  } else {
+    setStrike(strike+1);
+  }
+}
+    
   return (
     <div className="App">
       <DisplayComponent ball={ball} strike={strike} foul={foul} hit={hit}/>
